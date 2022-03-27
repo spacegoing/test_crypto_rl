@@ -1,0 +1,21 @@
+---
+version: '3'
+services:
+  agent:
+    image: spacegoing/cpt
+    container_name: cptagent
+    # build:
+    #   context: .
+    #   dockerfile: "./docker/Dockerfile.custom"
+    volumes:
+      - "./:/root/agent"
+    working_dir: /root/agent
+    tty: true
+
+  cptdb:
+    image: mongo:latest
+    container_name: cptmg
+    volumes:
+      - "./cptdata:/data"
+    ports:
+      - "27018:27017"
