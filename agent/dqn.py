@@ -1,6 +1,6 @@
 from keras.models import Sequential
 from keras.layers import Dense, Flatten, Conv2D
-from keras.optimizers import Adam
+from keras.optimizers import adam_v2
 from rl.agents.dqn import DQNAgent
 from rl.memory import SequentialMemory
 from rl.callbacks import FileLogger, ModelIntervalCheckpoint
@@ -67,7 +67,7 @@ class Agent(object):
                               gamma=gamma,
                               target_model_update=1000,
                               delta_clip=1.0)
-        self.agent.compile(Adam(lr=float("3e-4")), metrics=['mae'])
+        self.agent.compile(adam_v2.Adam(lr=float("3e-4")), metrics=['mae'])
 
     def __str__(self):
         # msg = '\n'
@@ -166,8 +166,8 @@ class Agent(object):
             self.agent.fit(self.env,
                            callbacks=callbacks,
                            nb_steps=self.number_of_training_steps,
-                           log_interval=10000,
-                           verbose=0,
+                           log_interval=100,
+                           verbose=1,
                            visualize=self.visualize)
             LOGGER.info("training over.")
             LOGGER.info('Saving AGENT weights...')

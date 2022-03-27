@@ -25,8 +25,8 @@ MAX_BOOK_ROWS = 15
 INCLUDE_ORDERFLOW = True
 
 # ./data_recorder/database/database.py
-BATCH_SIZE = 100
-RECORD_DATA = False
+BATCH_SIZE = 10000
+RECORD_DATA = True
 MONGO_ENDPOINT = 'cptdb:27018'
 ARCTIC_NAME = 'crypto.tickstore'
 TIMEZONE = tz.utc
